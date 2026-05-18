@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black: #0d0d0d;
+  --cream: #f5f2ee;
+  --red: #c8321a;
+  --gold: #c9a84c;
+  --gray: #6b6b6b;
+
+  --black-rgb: 13 13 13;
+  --cream-rgb: 245 242 238;
+  --red-rgb: 200 50 26;
+  --gold-rgb: 201 168 76;
+  --gray-rgb: 107 107 107;
+}
+
+html,
+body {
+  background-color: var(--cream);
+  color: var(--black);
+  font-family: var(--font-fd), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .section {
+    padding: 88px 5%;
+  }
+
+  .headline {
+    font-family: var(--font-fb), Impact, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 0.95;
+  }
+
+  .serif {
+    font-family: var(--font-fs), Georgia, serif;
+    font-style: italic;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold tracking-wide transition-colors;
+  }
+  .btn-primary {
+    background-color: var(--red);
+    color: var(--cream);
+  }
+  .btn-primary:hover {
+    background-color: #a82a16;
+  }
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--black);
+    border: 1.5px solid var(--black);
+  }
+  .btn-ghost:hover {
+    background-color: var(--black);
+    color: var(--cream);
+  }
+
+  .card {
+    @apply rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5 transition-shadow;
+  }
+  .card:hover {
+    @apply shadow-md;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider;
+  }
+  .badge-gold {
+    background-color: var(--gold);
+    color: var(--black);
+  }
+  .badge-red {
+    background-color: var(--red);
+    color: var(--cream);
+  }
+  .badge-gray {
+    background-color: var(--gray);
+    color: var(--cream);
+  }
+}
