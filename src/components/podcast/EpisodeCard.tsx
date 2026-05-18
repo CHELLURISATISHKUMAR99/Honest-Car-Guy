@@ -1,4 +1,5 @@
 import type { Episode } from '@/lib/types';
+import { VideoPlayer } from './VideoPlayer';
 
 interface Props {
   episode: Episode;
@@ -7,6 +8,12 @@ interface Props {
 export function EpisodeCard({ episode }: Props) {
   return (
     <article className="card flex h-full flex-col">
+      {episode.youtubeId && (
+        <div className="mb-5">
+          <VideoPlayer youtubeId={episode.youtubeId} title={episode.title} />
+        </div>
+      )}
+
       <div className="flex items-center justify-between text-xs uppercase tracking-widest text-gray">
         <span>Episode {String(episode.number).padStart(3, '0')}</span>
         <span>{episode.durationMinutes} min</span>

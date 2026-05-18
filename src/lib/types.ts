@@ -10,6 +10,7 @@ export type Episode = {
   summary: string;
   audioUrl?: string;
   artworkUrl?: string;
+  youtubeId?: string;
 };
 
 export type DealerTier = 'listed' | 'certified' | 'premier';

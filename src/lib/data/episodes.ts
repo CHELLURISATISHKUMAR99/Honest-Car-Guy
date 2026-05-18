@@ -11,6 +11,7 @@ export const episodes: Episode[] = [
     topic: 'Buying tactics',
     summary:
       'The three negotiation traps that quietly add $3,000 to the average new-car deal — and the simple script that defuses each one.',
+    youtubeId: 'M7lc1UVf-VE',
   },
   {
     id: 'ep-002',
@@ -34,6 +35,7 @@ export const episodes: Episode[] = [
     topic: 'EVs & hybrids',
     summary:
       'Charging access, resale curves, and the climate factor most reviewers ignore. A grounded look at who an EV actually fits today.',
+    youtubeId: 'M7lc1UVf-VE',
   },
   {
     id: 'ep-004',
@@ -79,5 +81,6 @@ export const episodes: Episode[] = [
     topic: 'Dealer directory',
     summary:
       'The questions every shopper should ask before they walk in — and the red flags our certified dealers never hide.',
+    youtubeId: 'M7lc1UVf-VE',
   },
 ];
