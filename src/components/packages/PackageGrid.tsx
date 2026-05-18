@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { cn } from '@/lib/utils/cn';
 
 interface Pkg {
@@ -6,6 +7,9 @@ interface Pkg {
   cadence: string;
   highlight?: boolean;
   bullets: string[];
+  applyTier?: 'listed' | 'certified' | 'premier';
+  ctaHref?: string;
+  ctaLabel?: string;
 }
 
 interface Props {
@@ -19,6 +23,7 @@ export const dealerPackages: Pkg[] = [
     name: 'Listed',
     price: 99,
     cadence: 'per month',
+    applyTier: 'listed',
     bullets: [
       'Public listing in the dealer directory',
       'Name, location, contact, specialties',
@@ -30,6 +35,7 @@ export const dealerPackages: Pkg[] = [
     price: 199,
     cadence: 'per month',
     highlight: true,
+    applyTier: 'certified',
     bullets: [
       'Everything in Listed',
       'Independent vetting + certified badge',
@@ -41,6 +47,7 @@ export const dealerPackages: Pkg[] = [
     name: 'Premier',
     price: 399,
     cadence: 'per month',
+    applyTier: 'premier',
     bullets: [
       'Everything in Certified',
       'Featured dealer on the home page',
@@ -119,15 +126,20 @@ export function PackageGrid({ title, description, packages }: Props) {
                 </li>
               ))}
             </ul>
-            <button
-              type="button"
-              className={cn(
+            {(() => {
+              const href = pkg.ctaHref
+                ?? (pkg.applyTier ? `/dealers/apply?tier=${pkg.applyTier}` : null);
+              const label = pkg.ctaLabel ?? (pkg.applyTier ? 'Apply now' : 'Get started');
+              const className = cn(
                 'btn mt-8',
                 pkg.highlight ? 'btn-primary' : 'btn-ghost',
-              )}
-            >
-              Get started
-            </button>
+              );
+              return href ? (
+                <Link href={href} className={className}>{label}</Link>
+              ) : (
+                <button type="button" className={className}>{label}</button>
+              );
+            })()}
           </div>
         ))}
       </div>

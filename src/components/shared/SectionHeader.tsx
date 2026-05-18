@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils/cn';
 interface Props {
   eyebrow?: string;
   title: string;
-  description?: string;
+  description?: React.ReactNode;
   align?: 'left' | 'center';
   className?: string;
 }

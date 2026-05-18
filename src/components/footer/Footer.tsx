@@ -36,7 +36,8 @@ export function Footer() {
             <h4 className="headline text-sm tracking-widest text-gold">Dealers & Sponsors</h4>
             <ul className="mt-4 space-y-2 text-sm">
               <li><Link href="/packages" className="hover:text-red">Packages</Link></li>
-              <li><Link href="/packages" className="hover:text-red">Sponsorship</Link></li>
+              <li><Link href="/dealers/pledge" className="hover:text-red">Transparency pledge</Link></li>
+              <li><Link href="/dealers/apply" className="hover:text-red">Apply to join</Link></li>
             </ul>
           </div>
         </div>

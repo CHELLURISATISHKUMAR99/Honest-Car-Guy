@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { DealerGrid } from '@/components/dealers/DealerGrid';
 import { dealers } from '@/lib/data/dealers';
@@ -31,6 +32,23 @@ export default function DealersPage() {
         </div>
 
         <DealerGrid dealers={ordered} />
+
+        <div className="mt-16 rounded-2xl border border-black/10 bg-white p-8 sm:flex sm:items-center sm:justify-between">
+          <div>
+            <h3 className="headline text-2xl text-black sm:text-3xl">Run a dealership?</h3>
+            <p className="mt-2 max-w-xl text-sm text-gray">
+              Read the pledge, then apply to be listed. We review every application — paying doesn’t guarantee approval.
+            </p>
+          </div>
+          <div className="mt-6 flex gap-3 sm:mt-0">
+            <Link href="/dealers/pledge" className="btn btn-ghost">
+              Read pledge
+            </Link>
+            <Link href="/dealers/apply" className="btn btn-primary">
+              Apply
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );
