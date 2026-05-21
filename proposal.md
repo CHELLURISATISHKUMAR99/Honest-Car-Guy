@@ -132,7 +132,61 @@ To prevent any ambiguity, the following are explicitly **outside** Phase 1 scope
 | Buying-guide CMS | Phase 3 |
 | Newsletter signup + email automation | Phase 3 |
 
-### 3.3 Technologies used in Phase 1
+### 3.3 What happens when a dealer submits an application *(Phase 1 workflow)*
+
+This is the end-to-end flow once Phase 1 is live. Steps 1–4 are fully automated by the website. Steps 5–9 are AutoInfo4U's manual responsibility in Phase 1; they become automated in Phase 2.
+
+**Automated (handled by the website):**
+
+1. **Dealer fills out the 6-step application** on `/dealers/apply` — tier, dealership info, contact, specialties, pledge signature, and a final review screen.
+2. **Form validates client-side** (required fields, valid email, valid ZIP, all pledge items checked for Certified+) before submit is enabled.
+3. **Server validates again** via `zod` on `POST /api/dealer-application` to prevent bad or malicious submissions.
+4. **Email arrives in AutoInfo4U's inbox** via Resend, formatted clean and ready to review:
+   - Tier requested
+   - Full dealership details (name, license #, address, years in business, inventory type, website)
+   - Contact person (name, role, email, phone)
+   - Specialties + "about" paragraph
+   - Pledge confirmation (six commitments checked)
+5. **Dealer sees a confirmation screen**: *"Thanks — we'll be in touch within 2 business days at [their email]."*
+
+**Manual (handled by AutoInfo4U in Phase 1, automated in Phase 2):**
+
+6. **Vet the applicant.** AutoInfo4U personally verifies, before approving:
+   - State dealer license is real and active (via the state DMV website)
+   - Online review aggregate ≥ 3.8/5 (Google, BBB, DealerRater)
+   - No state AG fraud actions in last 5 years
+   - No active lemon-law issues they refused to honor
+7. **Decide approve, request more info, or reject.**
+   - *Approve* → continue to step 8.
+   - *Need more info* → reply to the dealer asking for what's missing.
+   - *Reject* → reply with a brief polite decline. Phase 1 does not store rejected applications anywhere except your email; you can archive them in a folder for reference.
+8. **Collect payment** (Phase 1 is manual):
+   - Invoice the dealer outside the site (Stripe Invoicing, Wave, or QuickBooks) for the agreed tier ($99 / $199 / $399 per month).
+   - Wait for first payment to clear before publishing.
+9. **Publish the dealer to the site.** AutoInfo4U (or Quad 4, on a content-update retainer) adds the dealer to `src/lib/data/dealers.ts` with their name, address, tier, specialties, blurb, phone, and website — then commits and pushes. Vercel auto-rebuilds and the dealer appears in the public directory and Car Finder results within ~60 seconds.
+10. **Reply to the dealer** confirming they are now listed, with their public dealer page URL and what to expect next.
+
+**End state (after Phase 1 workflow):**
+
+- Dealer appears in `/dealers` directory with the correct tier badge
+- Dealer is eligible to surface in `/car-finder` results when their ZIP region matches and their specialties fit
+- Dealer's "Get directions" link works from any matched Car Finder result
+
+**What Phase 1 does NOT do automatically (and Phase 2 does):**
+
+| Task | Phase 1 | Phase 2 |
+|------|---------|---------|
+| Store the application persistently | ❌ Inbox only | ✅ `dealer_applications` table in Supabase |
+| Verify state dealer license | ❌ Manual lookup by AutoInfo4U | Manual (Phase 3 may automate via API) |
+| Charge the dealer monthly | ❌ Manual invoice outside the site | ✅ Stripe Checkout subscription |
+| Email a "we received it" auto-acknowledgement to the dealer | ❌ Dealer sees a confirmation screen only | ✅ Branded confirmation email |
+| Track approve / pending / rejected status across applications | ❌ Email folders | ✅ Admin review queue with statuses |
+| Publish an approved dealer to the directory | ❌ Code edit + Git push (1–2 minutes manual work) | ✅ One-click approve → instantly visible |
+| Notify the dealer they were approved | ❌ Manual reply | ✅ Automatic approval email + welcome instructions |
+| Capture leads for that dealer | ❌ Car Finder shows the dealer but does not capture shoppers | ✅ Every Car Finder submission stored and emailed to dealer |
+| Begin measuring the dealer's response time and NPS | ❌ Not measured | ✅ Lead lifecycle tracked from day one |
+
+### 3.4 Technologies used in Phase 1
 
 | Layer | Technology |
 |-------|------------|
@@ -145,7 +199,7 @@ To prevent any ambiguity, the following are explicitly **outside** Phase 1 scope
 | Hosting | Vercel |
 | Source control | GitHub |
 
-### 3.4 Phase 1 deliverables checklist
+### 3.5 Phase 1 deliverables checklist
 
 At the close of Phase 1, AutoInfo4U receives:
 
