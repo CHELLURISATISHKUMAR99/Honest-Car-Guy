@@ -44,6 +44,8 @@ Quad 4 Consulting was engaged to translate this editorial promise into a working
 
 ## 3. Phase 1 — Foundation (Delivered)
 
+> **Scope clarification.** Phase 1 delivers the *public-facing website only* — a brochure-quality marketing surface with a working Car Finder demo and a dealer application form that emails AutoInfo4U. There is **no database, no payment processing, no login system, no admin panel, and no automated dealer monitoring** in Phase 1. Those capabilities are scoped into Phases 2 and 3. Until then, AutoInfo4U manages dealers by editing source files and reviewing applications from their inbox.
+
 The following has been built, tested, and deployed to the AutoInfo4U development branch (`claude/create-website-files-oc06H`).
 
 ### 3.1 Brand & Platform
@@ -243,25 +245,122 @@ Phases are sequential. Phase 2 can begin within one week of contract acceptance.
 
 ## 7. Investment
 
-*All figures are indicative ranges based on the scope defined above. Final pricing to be confirmed in a Statement of Work after a one-hour scoping call.*
+*All figures are in USD. Phase 1 is a fixed fee. Phases 2 and 3 are quoted as ranges; the upper figure reflects optional scope (Twilio SMS, sponsor-inquiry flow, full buying-guide CMS). Final pricing is confirmed in a Statement of Work after a one-hour scoping call.*
+
+### 7.1 Phase 1 — Foundation *(delivered)*
+
+Fixed fee. Line-item breakdown shown for transparency.
+
+| Work item | Fee |
+|-----------|----:|
+| Brand system, design tokens, type ramp, base layout primitives | $1,500 |
+| App Router setup + 8 public pages (Home, Podcast, Car Finder, Dealers, Pledge, Apply, Packages, 404) | $1,800 |
+| Car Finder — 7-step guided flow with scoring algorithm and result page | $2,200 |
+| Dealer directory + ZIP-proximity matching + Google Maps "Get directions" | $1,400 |
+| Dealer application form (6 steps) + zod-validated API + Resend email forwarding | $1,400 |
+| Transparency Pledge page | $400 |
+| Inline YouTube video player (click-to-play) for episode cards | $400 |
+| Documentation (CLAUDE.md, README, slash-command scaffolds) + 60-min recorded handoff | $400 |
+| **Phase 1 total** | **$9,500** |
+
+### 7.2 Phase 2 — Operating Platform
+
+Quoted as a range. Items marked *(optional)* drive the upper figure.
+
+| Work item | Fee |
+|-----------|----:|
+| Supabase project provisioning + schema + RLS policies + migration files | $2,500 |
+| One-time migration of existing seed dealers/episodes into Supabase | included |
+| Lead-capture endpoint + Car Finder result-submission flow | $2,000 |
+| Email templates: lead-routing-to-dealer, top-5-confirmation-to-shopper (Resend) | $1,500 |
+| Post-engagement survey sequence at +2 / +14 / +90 days + public review page | $2,000 |
+| Stripe Checkout for 3 dealer tiers + subscription webhook handler + billing-status surface | $3,000 |
+| Supabase Auth (admin role + dealer magic-link sign-in) + protected route guards | $1,500 |
+| PostHog instrumentation + 3 pre-built dashboards (Finder funnel, app funnel, dealer CTR) | $1,500 |
+| Staging environment (separate Vercel + Supabase project) + QA pass | $1,000 |
+| 90-minute training session + updated documentation | $500 |
+| Twilio SMS lead routing for Certified+ tiers *(optional)* | $1,500 |
+| Sponsor-inquiry flow on `/packages` with Resend forwarding *(optional)* | $1,000 |
+| **Phase 2 subtotal — base scope** | **$15,500** |
+| **Phase 2 total — with both options** | **$18,000** |
+| **Quoted range** | **$14,000 – $18,000** |
+
+*The range floor of $14,000 reflects a slightly slimmer scope: combining the dealer + shopper email templates, skipping the staging environment, and deferring the third PostHog dashboard. The base scope of $15,500 is the recommended target.*
+
+### 7.3 Phase 3 — Admin & Scale
+
+| Work item | Fee |
+|-----------|----:|
+| Admin dashboard at `/admin` (KPIs, alerts, pending actions) | $2,500 |
+| Admin dealer list with live performance scores + tier-eligibility flags | $1,500 |
+| Per-dealer admin detail view (metrics, leads, reviews, billing) | $1,500 |
+| Admin lead lifecycle tracker | $1,000 |
+| Application review queue (approve / reject → auto-create dealer) | $1,500 |
+| Complaint review surface | $1,000 |
+| Dealer self-service dashboard at `/dealer-dashboard` (metrics, leads, listing editor, billing portal) | $3,000 |
+| Daily scoring engine (Vercel Cron) + automatic tier demotion/promotion + dealer notifications | $2,500 |
+| Per-episode SEO pages with transcripts + schema.org markup | $2,000 |
+| Per-dealer SEO pages (`/dealers/[state]/[slug]`) with public scorecard | $2,000 |
+| `sitemap.xml`, `robots.txt`, dynamic Open Graph image generator | $1,000 |
+| Newsletter capture + Resend Audiences double-opt-in | $1,000 |
+| Operations runbook + 2-hour operator training + 1-hour dealer-onboarding screencast | $1,500 |
+| Buying-guide CMS — Supabase-backed `/guides/[slug]` with image upload + draft/publish *(optional)* | $3,000 |
+| **Phase 3 subtotal — base scope** | **$22,000** |
+| **Phase 3 total — with CMS option** | **$25,000** |
+| **Quoted range** | **$18,000 – $24,000** |
+
+*Range floor reflects deferring per-dealer SEO pages and shipping a simpler newsletter capture (no double-opt-in flow). The CMS line item is recommended once AutoInfo4U has ≥ 5 buying guides to publish; before that, MDX files in the repo are sufficient.*
+
+### 7.4 Ongoing Retainer *(optional, post-Phase 3)*
+
+Month-to-month, cancellable with 30 days' notice.
+
+| Inclusion | Hours / month |
+|-----------|---------------:|
+| Production monitoring + incident response | up to 4 hrs |
+| Bug triage and fixes | up to 4 hrs |
+| Minor feature work or copy / content updates | up to 6 hrs |
+| Quarterly performance + analytics review | included |
+| Vendor / integration health checks | included |
+| **Retainer fee** | **$1,800 / month** |
+
+Additional hours beyond the included pool are billed at **$150 / hour** with prior written approval.
+
+### 7.5 Investment summary
 
 | Phase | Description | Investment |
-|-------|-------------|-----------|
-| **Phase 1** | Foundation build (delivered) | **$9,500** *(fixed fee)* |
-| **Phase 2** | Operating platform — Supabase, leads, surveys, Stripe, auth, analytics | **$14,000 – $18,000** |
-| **Phase 3** | Admin panel, dealer dashboards, scoring engine, SEO surface | **$18,000 – $24,000** |
-| **Ongoing** | Maintenance retainer: hosting management, bug triage, minor feature work, content support | **$1,800 / month** *(optional, month-to-month)* |
+|-------|-------------|-----------:|
+| Phase 1 | Foundation *(delivered)* | **$9,500** |
+| Phase 2 | Operating platform | **$14,000 – $18,000** |
+| Phase 3 | Admin & scale | **$18,000 – $24,000** |
+| Total project | Phases 1 + 2 + 3 | **$41,500 – $51,500** |
+| Ongoing | Optional retainer | **$1,800 / month** |
 
-**Excludes:**
-- Third-party service fees (Vercel, Supabase, Resend, Twilio, Stripe, PostHog) — billed to AutoInfo4U directly
-- Domain registration
-- Branded photography or video production
-- Editorial content writing (episode show notes, buying guides) — available as a separate engagement
+### 7.6 What's excluded
 
-**Payment terms:**
-- Phase 1: due on acceptance of this proposal
-- Phase 2 / Phase 3: 50% on phase kickoff, 50% on phase acceptance
-- Ongoing retainer: monthly in advance, cancellable with 30 days' notice
+The figures above do **not** include:
+
+- **Third-party service fees** — Vercel, Supabase, Resend, Twilio, Stripe, PostHog, OpenAI (if used). Billed to AutoInfo4U directly. Indicative monthly total at low volume: ~$50–$120/month; at moderate scale: ~$200–$500/month.
+- **Domain registration and renewal** — typically $12–$20/year, registered in AutoInfo4U's name.
+- **Editorial content** — podcast episode show notes, buying-guide articles, dealer copy. Available as a separate engagement at $300–$600 per article.
+- **Photography, video production, voice talent** — out of scope.
+- **Legal documents** — privacy policy, terms of service, sponsor disclosure copy. AutoInfo4U provides these; we wire them into the site at no additional cost.
+- **Major rebrands** — visual tweaks within the current token system are included in ongoing maintenance; full rebrands are quoted separately.
+
+### 7.7 Payment terms
+
+| Phase | Schedule |
+|-------|----------|
+| Phase 1 | Net 14 from acceptance of this proposal |
+| Phase 2 | 50% on phase kickoff · 50% on phase acceptance (Net 14) |
+| Phase 3 | 50% on phase kickoff · 50% on phase acceptance (Net 14) |
+| Retainer | Monthly in advance, billed on the 1st |
+
+Acceptance is defined as: all phase deliverables shipped to AutoInfo4U's production environment, training session completed, and AutoInfo4U countersigning the phase acceptance form. AutoInfo4U has 10 business days from delivery to request fixes before acceptance is auto-confirmed.
+
+### 7.8 Why these numbers
+
+For transparency, our rates reflect a senior full-stack product engineer at an indicative blended rate of **$150 / hour**. Phase 2 base scope (~103 hours) and Phase 3 base scope (~147 hours) are estimated against the line items above with a 15% buffer for revisions and QA. We do not bill for time we do not work; if a phase delivers under budget, the savings are passed to AutoInfo4U as either reduced final invoice or rolled into the next phase's scope at AutoInfo4U's election.
 
 ---
 
