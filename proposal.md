@@ -46,50 +46,106 @@ Quad 4 Consulting was engaged to translate this editorial promise into a working
 
 > **Scope clarification.** Phase 1 delivers the *public-facing website only* — a brochure-quality marketing surface with a working Car Finder demo and a dealer application form that emails AutoInfo4U. There is **no database, no payment processing, no login system, no admin panel, and no automated dealer monitoring** in Phase 1. Those capabilities are scoped into Phases 2 and 3. Until then, AutoInfo4U manages dealers by editing source files and reviewing applications from their inbox.
 
-The following has been built, tested, and deployed to the AutoInfo4U development branch (`claude/create-website-files-oc06H`).
+### 3.1 Services included in Phase 1
 
-### 3.1 Brand & Platform
-- Next.js 14 application (App Router, TypeScript, React Server Components)
-- Brand system: five-color CSS-variable token system, three-font typographic stack (Bebas Neue / DM Serif Display Italic / DM Sans), consistent `.section` / `.btn` / `.card` / `.badge` primitives
-- Production build pipeline, statically pre-rendered routes, Vercel-compatible deployment
-- Full TypeScript domain model: `Episode`, `Dealer`, `Vehicle`, `FinderAnswers`, `ScoredVehicle`, `DealerMatch`
+This is what Quad 4 Consulting provides AutoInfo4U as part of the Phase 1 engagement.
 
-### 3.2 Public Pages
-| Page | Description |
-|------|-------------|
-| `/` | Hero, latest episodes, 7-step finder explainer, certified dealers preview, dealer CTA |
-| `/podcast` | Full episode archive with inline YouTube video embeds (click-to-play) |
-| `/car-finder` | 7-step guided shopper flow with scored top-5 results and nearby dealer recommendations |
-| `/dealers` | Tiered directory with Listed / Certified / Premier badging |
-| `/dealers/pledge` | Public Transparency Pledge listing six dealer commitments and performance thresholds |
-| `/dealers/apply` | 6-step dealer application form with tier-conditional pledge signature |
-| `/packages` | Dealer and podcast sponsorship pricing tiers ($99 / $199 / $399 dealer; $500 / $1,500 / $4,500 sponsor) |
-| `/not-found` | Branded 404 page |
+#### Service 1 — Strategy & brand foundation
+- Discovery review of AutoInfo4U's editorial mission and competitive positioning
+- Brand token system (color palette, typography ramp, spacing, component primitives) documented in code and a written reference
+- Reusable component library so future surfaces extend the system without re-design
 
-### 3.3 Car Finder
-- 7-step guided flow: Budget → Body Style → Fuel → Seats → Primary Use → Priorities → ZIP
-- Step-by-step progress bar with inline validation
-- Vehicle scoring algorithm with explicit reason strings against the shopper's inputs
-- Dealer-proximity scoring (ZIP-region match + tier + specialty fit)
-- One-click Google Maps directions to each recommended dealer
+#### Service 2 — Website design & development
+- Custom design and front-end build, mobile-responsive across phone / tablet / desktop
+- Built on Next.js 14 with TypeScript and Tailwind CSS — industry-standard, fast, SEO-friendly stack
+- 8 fully designed and developed pages:
+  - **Home page** — hero, latest episodes preview, Car Finder explainer, certified dealer preview, dealer CTA
+  - **Podcast page** — full episode archive with inline video player
+  - **Car Finder page** — 7-step guided shopper tool
+  - **Dealers directory page** — tiered dealer listing with badges
+  - **Transparency Pledge page** — public commitments dealers sign
+  - **Dealer Apply page** — multi-step application form
+  - **Packages page** — pricing tiers for dealers and sponsors
+  - **404 page** — branded error page
 
-### 3.4 Dealer Onboarding (Phase 1 scope)
-- Public-facing Transparency Pledge documenting the six commitments dealers sign
-- Multi-step application flow with validation, pledge signature, and review screen
-- Server endpoint (`POST /api/dealer-application`) with `zod` validation
-- Email forwarding via Resend to the AutoInfo4U administrator when configured
+#### Service 3 — Car Finder tool
+- 7-step guided shopper flow (Budget → Body Style → Fuel → Seats → Use → Priorities → ZIP)
+- Custom scoring algorithm that ranks vehicles against shopper inputs with plain-English reasons
+- Dealer proximity matching by ZIP region with one-click Google Maps directions to each recommended dealer
+- Inline validation, progress bar, and "start over" affordance
 
-### 3.5 Inline Video
-- Optional `youtubeId` per episode
-- Lightweight click-to-play player (thumbnail first, iframe on demand) to preserve page load performance
+#### Service 4 — Dealer onboarding (application surface)
+- Public Transparency Pledge page listing the six dealer commitments and the performance thresholds tied to each tier
+- 6-step dealer application form with field-level validation, pledge signature, and review-and-submit screen
+- Server endpoint that validates submissions and emails the completed application to AutoInfo4U via Resend
+- Footer and `/packages` page wired to the application flow
 
-### 3.6 Developer Surface
-- `.claude/commands/` slash commands for repeatable scaffolding (`/component`, `/page`, `/episode`, `/dealer`, `/api`, `/review-flow`)
-- Path alias `@/*` → `src/*`
+#### Service 5 — Podcast presentation
+- Episode card design with topic badge, duration, guest, and date
+- Inline YouTube video player (click-to-play) for episodes that have video — performance-optimized so the page stays fast even with many episodes
+- Audio-only episodes display gracefully without a player
+
+#### Service 6 — Hosting & deployment
+- Configured for one-click deployment to Vercel (free tier sufficient at launch)
+- HTTPS, global CDN, automatic preview deployments per Git branch — all included by Vercel
+- Production build verified, all routes statically pre-rendered where possible for maximum performance
+- Custom-domain wiring (DNS instructions provided; domain purchased and owned by AutoInfo4U)
+
+#### Service 7 — Source code & ownership
+- Full source code transferred to AutoInfo4U's GitHub repository
+- AutoInfo4U owns the code outright — no licensing, no ongoing access fees, no vendor lock-in
+- Code is documented and follows industry conventions so any qualified Next.js developer can pick it up
+
+#### Service 8 — Documentation
+- `README.md` with setup, run, and deploy instructions
 - `CLAUDE.md` project memory documenting brand tokens, type shapes, and working agreements
-- `.env.example` documenting integration keys (Supabase, Stripe, Twilio, Resend, PostHog)
+- `.env.example` listing every external service the site can connect to (Supabase, Stripe, Twilio, Resend, PostHog)
+- Slash-command scaffolds (`/component`, `/page`, `/episode`, `/dealer`, `/api`, `/review-flow`) so future additions follow the same patterns
 
-### 3.7 Phase 1 Deliverables
+#### Service 9 — Handoff & training
+- 60-minute recorded walkthrough call covering:
+  - How the site is structured
+  - How to add or edit episodes
+  - How to add or remove dealers
+  - How dealer applications arrive in the inbox
+  - How to deploy a change
+- Two weeks of post-launch email support for setup and clarifying questions
+
+### 3.2 What Phase 1 *does not* include
+
+To prevent any ambiguity, the following are explicitly **outside** Phase 1 scope and are delivered in Phases 2 and 3:
+
+| Capability | Phase |
+|------------|-------|
+| Database to persist episodes, dealers, leads, applications | Phase 2 |
+| Lead capture from Car Finder (storing shopper preferences and contact info) | Phase 2 |
+| Email lead routing to matched dealers | Phase 2 |
+| Post-engagement shopper surveys (NPS, response time, quote accuracy) | Phase 2 |
+| Stripe-based dealer payment collection ($99 / $199 / $399 subscriptions) | Phase 2 |
+| Authentication / login system for dealers or admin | Phase 2 |
+| Twilio SMS lead routing | Phase 2 (optional) |
+| Analytics dashboards (PostHog) | Phase 2 |
+| Admin panel for AutoInfo4U to manage dealers and leads | Phase 3 |
+| Dealer self-service dashboard | Phase 3 |
+| Automated tier-demotion engine based on performance metrics | Phase 3 |
+| Per-episode and per-dealer SEO pages | Phase 3 |
+| Buying-guide CMS | Phase 3 |
+| Newsletter signup + email automation | Phase 3 |
+
+### 3.3 Technologies used in Phase 1
+
+| Layer | Technology |
+|-------|------------|
+| Framework | Next.js 14 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS 3.4 with custom brand tokens |
+| Fonts | Bebas Neue, DM Serif Display Italic, DM Sans (via `next/font/google`) |
+| Validation | zod |
+| Email forwarding (dealer applications) | Resend |
+| Hosting | Vercel |
+| Source control | GitHub |
+
+### 3.4 Phase 1 deliverables checklist
 
 At the close of Phase 1, AutoInfo4U receives:
 
@@ -109,6 +165,7 @@ At the close of Phase 1, AutoInfo4U receives:
 | 12 | `.env.example` with documented keys for Supabase / Stripe / Twilio / Resend / PostHog | Repo root |
 | 13 | `README.md` with setup and run instructions | Repo root |
 | 14 | 60-minute handoff walkthrough call (recorded) covering repo structure, deployment, content updates | Zoom / Meet |
+| 15 | Two weeks of post-launch email support | Email |
 
 ---
 
@@ -249,19 +306,20 @@ Phases are sequential. Phase 2 can begin within one week of contract acceptance.
 
 ### 7.1 Phase 1 — Foundation *(delivered)*
 
-Fixed fee. Line-item breakdown shown for transparency.
+Fixed fee, broken out by service line so AutoInfo4U sees exactly what they are paying for.
 
-| Work item | Fee |
-|-----------|----:|
-| Brand system, design tokens, type ramp, base layout primitives | $1,500 |
-| App Router setup + 8 public pages (Home, Podcast, Car Finder, Dealers, Pledge, Apply, Packages, 404) | $1,800 |
-| Car Finder — 7-step guided flow with scoring algorithm and result page | $2,200 |
-| Dealer directory + ZIP-proximity matching + Google Maps "Get directions" | $1,400 |
-| Dealer application form (6 steps) + zod-validated API + Resend email forwarding | $1,400 |
-| Transparency Pledge page | $400 |
-| Inline YouTube video player (click-to-play) for episode cards | $400 |
-| Documentation (CLAUDE.md, README, slash-command scaffolds) + 60-min recorded handoff | $400 |
-| **Phase 1 total** | **$9,500** |
+| # | Service | Fee |
+|---|---------|----:|
+| 1 | Strategy & brand foundation (discovery, brand tokens, component library) | $1,500 |
+| 2 | Website design & development (8 pages, responsive, accessible) | $1,800 |
+| 3 | Car Finder tool (7-step flow, scoring algorithm, result page) | $2,200 |
+| 4 | Dealer onboarding surface (Pledge page + application form + API + Resend wiring) | $1,800 |
+| 5 | Podcast presentation (episode cards + inline YouTube video player) | $700 |
+| 6 | Hosting & deployment setup (Vercel configuration, custom-domain instructions) | $400 |
+| 7 | Source code & GitHub transfer (full ownership to AutoInfo4U) | included |
+| 8 | Documentation (`README.md`, `CLAUDE.md`, slash-command scaffolds) | $500 |
+| 9 | Handoff & training (60-min recorded walkthrough + 2 weeks email support) | $600 |
+| | **Phase 1 total (fixed fee)** | **$9,500** |
 
 ### 7.2 Phase 2 — Operating Platform
 
