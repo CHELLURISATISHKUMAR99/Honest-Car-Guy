@@ -47,3 +47,6 @@ next-env.d.ts.bak
 # Generated proposal artifacts (regenerated from proposal.md via pandoc)
 proposal.html
 proposal.docx
+
+# Generated Phase 1 scope doc (regenerated from build_phase1_docx.py)
+Phase1_Scope_AutoInfo4U.docx
