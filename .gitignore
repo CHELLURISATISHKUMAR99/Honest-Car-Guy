@@ -44,5 +44,6 @@ next-env.d.ts.bak
 # turbo
 .turbo
 
-# Generated proposal HTML (regenerated from proposal.md via pandoc)
+# Generated proposal artifacts (regenerated from proposal.md via pandoc)
 proposal.html
+proposal.docx
