@@ -22,6 +22,18 @@ A four-month execution plan and indicative investment figures are included in §
 
 ---
 
+### At-a-glance: deliverables per phase
+
+| Phase | Headline deliverables |
+|-------|----------------------|
+| **Phase 1 — Foundation** *(delivered)* | Source code on GitHub · Live Vercel preview · 8 public routes · Car Finder with scored matches · Transparency Pledge page · Dealer application form with Resend forwarding · Brand system docs · 60-min handoff walkthrough |
+| **Phase 2 — Operating Platform** | Supabase database with migrations · Lead capture pipeline · Dealer lead-notification emails · Post-engagement survey sequence (+2 / +14 / +90 days) · Stripe Checkout for 3 dealer tiers · Subscription webhook · Supabase Auth for admin + dealers · PostHog dashboards · Staging environment · 90-min training session |
+| **Phase 3 — Admin & Scale** | `/admin` panel (dashboard, dealers, leads, applications, complaints) · `/dealer-dashboard` self-service surface · Daily scoring engine with auto tier-demotion · SEO-ready per-episode and per-dealer pages · Buying-guide CMS · `sitemap.xml`, `robots.txt`, OG image generator · Newsletter capture · Operations runbook · 2-hour operator training |
+
+Each phase ends with a working, tested release deployed to AutoInfo4U's production environment, plus the documentation and training listed in §3.7, §4.7, and §5.5.
+
+---
+
 ## 2. Background & Understanding
 
 AutoInfo4U is building an independent, consumer-first alternative to the dealership-funded car-shopping ecosystem. The brand's promise — *honest car buying advice that works for the shopper, not the dealership* — requires that every product surface (editorial, tooling, directory) reinforce trust through transparent processes and measurable accountability.
@@ -75,6 +87,27 @@ The following has been built, tested, and deployed to the AutoInfo4U development
 - `CLAUDE.md` project memory documenting brand tokens, type shapes, and working agreements
 - `.env.example` documenting integration keys (Supabase, Stripe, Twilio, Resend, PostHog)
 
+### 3.7 Phase 1 Deliverables
+
+At the close of Phase 1, AutoInfo4U receives:
+
+| # | Deliverable | Format |
+|---|-------------|--------|
+| 1 | Complete source code on the `claude/create-website-files-oc06H` Git branch | GitHub repository |
+| 2 | Live Vercel deployment URL (preview environment) | Public URL |
+| 3 | 8 public routes + 1 server route, all production-built and statically pre-rendered where possible | Deployed application |
+| 4 | Brand system documentation: color tokens, type ramp, component primitives, layout grid | `CLAUDE.md` in repo |
+| 5 | Domain model: typed `Episode`, `Dealer`, `Vehicle`, `FinderAnswers`, `ScoredVehicle`, `DealerMatch` | `src/lib/types.ts` |
+| 6 | Seed content: 7 placeholder episodes, 7 placeholder dealers, 8 reference vehicles | `src/lib/data/*.ts` |
+| 7 | Working Car Finder with scored top-5 vehicles and proximity-ranked dealers | `/car-finder` |
+| 8 | Public Transparency Pledge page | `/dealers/pledge` |
+| 9 | Multi-step dealer application form with `zod` validation and Resend forwarding | `/dealers/apply` + `/api/dealer-application` |
+| 10 | Inline YouTube video player on episode cards (click-to-play, performance-optimized) | `/podcast` |
+| 11 | Slash-command scaffolds for repeatable content/page additions | `.claude/commands/` |
+| 12 | `.env.example` with documented keys for Supabase / Stripe / Twilio / Resend / PostHog | Repo root |
+| 13 | `README.md` with setup and run instructions | Repo root |
+| 14 | 60-minute handoff walkthrough call (recorded) covering repo structure, deployment, content updates | Zoom / Meet |
+
 ---
 
 ## 4. Phase 2 — Operating Platform (Proposed)
@@ -114,6 +147,28 @@ Phase 1 delivers a brochure-quality site capable of accepting dealer application
 - PostHog integration with event taxonomy for the Car Finder funnel, dealer application funnel, and outbound dealer clicks
 - Custom dashboards for: Finder completion rate, lead-to-purchase conversion, dealer click-through by tier
 
+### 4.7 Phase 2 Deliverables
+
+At the close of Phase 2, AutoInfo4U receives:
+
+| # | Deliverable | Format |
+|---|-------------|--------|
+| 1 | Supabase project with production schema, RLS policies, and migration files | Live database + `supabase/migrations/` in repo |
+| 2 | Schema documentation diagram showing tables, relationships, indexes | PDF / Notion page |
+| 3 | One-time migration script porting seed dealers/episodes into Supabase | Script + verification report |
+| 4 | Lead capture wired into the Car Finder: every submission persists with full shopper preferences | `leads` table + `/api/leads` endpoint |
+| 5 | Transactional email templates (lead notification to dealer, top-5 confirmation to shopper) | Resend templates + repo source |
+| 6 | Survey email sequence at +2 / +14 / +90 days with public review submission page | Scheduled Resend jobs + `/dealers/[slug]/review` |
+| 7 | Stripe Checkout integration for the three dealer tiers ($99 / $199 / $399) | Live Stripe products + checkout flow |
+| 8 | Stripe webhook handler covering subscription lifecycle (created, updated, cancelled, failed) | `/api/stripe/webhook` |
+| 9 | Supabase Auth with magic-link sign-in for dealers; admin role for AutoInfo4U staff | Live auth + protected route guards |
+| 10 | Optional Twilio SMS lead routing for Certified+ tiers | `/api/leads/sms` |
+| 11 | PostHog instrumentation across the Car Finder, application form, and outbound dealer clicks | Live PostHog project + event documentation |
+| 12 | Pre-built PostHog dashboards: Finder funnel, application funnel, dealer CTR by tier | PostHog dashboard URLs |
+| 13 | Staging environment (separate Vercel preview + Supabase project) for safe testing | Two-environment workflow |
+| 14 | Updated `CLAUDE.md` and a `docs/integrations.md` covering every connected service | Repo |
+| 15 | 90-minute training session: managing dealers, reviewing leads, reading PostHog dashboards | Zoom / Meet, recorded |
+
 ---
 
 ## 5. Phase 3 — Admin, Dealer Dashboards & Scale (Proposed)
@@ -147,6 +202,30 @@ Once Phase 2 is producing real data, Phase 3 builds the operating tools to manag
 - Buying-guide article system (`/guides/[slug]`) with editorial CMS via Supabase
 - `sitemap.xml`, `robots.txt`, dynamic Open Graph image generation
 - Newsletter capture and Resend Audiences integration
+
+### 5.5 Phase 3 Deliverables
+
+At the close of Phase 3, AutoInfo4U receives:
+
+| # | Deliverable | Format |
+|---|-------------|--------|
+| 1 | Admin panel at `/admin` with dashboard, alerts, and pending-action queue | Authenticated route |
+| 2 | Admin dealer-list view with live performance scores and tier-eligibility flags | `/admin/dealers` |
+| 3 | Per-dealer detail view (metrics, recent leads, reviews, billing status) | `/admin/dealers/[id]` |
+| 4 | Lead lifecycle tracker (submitted → replied → closed → outcome) | `/admin/leads` |
+| 5 | Application review queue with one-click approve / reject and automatic dealer creation on approval | `/admin/applications` |
+| 6 | Complaint review surface with resolution tracking | `/admin/complaints` |
+| 7 | Dealer self-service dashboard at `/dealer-dashboard` (own metrics, leads, listing editor, billing portal) | Authenticated route |
+| 8 | Threshold & tier engine — scheduled Vercel Cron recalculating scores daily | `/api/cron/recalculate-scores` + cron config |
+| 9 | Automatic tier demotion / promotion logic with notification emails to affected dealers | Live in production |
+| 10 | Per-episode SEO pages with transcripts, schema.org markup, OG images | `/podcast/[slug]` |
+| 11 | Per-dealer SEO pages with public scorecard, reviews, and inventory placeholder | `/dealers/[state]/[slug]` |
+| 12 | Buying-guide CMS — Supabase-backed `/guides/[slug]` with image uploads and draft/publish workflow | Live editorial surface |
+| 13 | `sitemap.xml`, `robots.txt`, dynamic Open Graph image generator | Auto-deployed |
+| 14 | Newsletter capture with Resend Audiences double-opt-in flow | Live |
+| 15 | Operations runbook documenting tier-demotion logic, manual overrides, content workflows, incident response | `docs/runbook.md` |
+| 16 | Two-hour operator training session for AutoInfo4U staff on the admin panel | Zoom / Meet, recorded |
+| 17 | One-hour dealer-side training video that AutoInfo4U can share with new dealer applicants | Recorded screencast |
 
 ---
 
