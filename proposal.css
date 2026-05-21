@@ -1,0 +1,169 @@
+@page {
+  size: Letter;
+  margin: 0.85in 0.85in 1in 0.85in;
+  @bottom-right {
+    content: "Page " counter(page) " of " counter(pages);
+    font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 9pt;
+    color: #6b6b6b;
+  }
+  @bottom-left {
+    content: "Quad 4 Consulting  ·  Proposal for AutoInfo4U";
+    font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 9pt;
+    color: #6b6b6b;
+  }
+}
+
+@page :first {
+  @bottom-right { content: none; }
+  @bottom-left { content: none; }
+}
+
+html {
+  font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 10.5pt;
+  color: #0d0d0d;
+  line-height: 1.55;
+}
+
+body {
+  margin: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  color: #0d0d0d;
+  letter-spacing: -0.01em;
+  page-break-after: avoid;
+}
+
+h1 {
+  font-size: 26pt;
+  font-weight: 700;
+  margin: 0 0 0.4em;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 18pt;
+  font-weight: 700;
+  margin: 1.6em 0 0.5em;
+  padding-top: 0.5em;
+  border-top: 2px solid #c8321a;
+  page-break-before: auto;
+}
+
+h3 {
+  font-size: 13pt;
+  font-weight: 700;
+  margin: 1.4em 0 0.4em;
+  color: #c8321a;
+}
+
+h4 {
+  font-size: 11pt;
+  font-weight: 700;
+  margin: 1.2em 0 0.3em;
+}
+
+p, li {
+  font-size: 10.5pt;
+}
+
+strong {
+  color: #0d0d0d;
+  font-weight: 700;
+}
+
+em {
+  color: #6b6b6b;
+}
+
+a {
+  color: #c8321a;
+  text-decoration: none;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #d4d0cb;
+  margin: 1.6em 0;
+}
+
+ul, ol {
+  padding-left: 1.3em;
+}
+
+li {
+  margin: 0.2em 0;
+}
+
+code {
+  font-family: "SF Mono", "Menlo", "Consolas", monospace;
+  font-size: 9.5pt;
+  background: #f5f2ee;
+  color: #c8321a;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.8em 0 1.2em;
+  font-size: 9.5pt;
+  page-break-inside: avoid;
+}
+
+thead {
+  background: #0d0d0d;
+  color: #f5f2ee;
+}
+
+th {
+  text-align: left;
+  padding: 7px 9px;
+  font-weight: 600;
+  font-size: 9pt;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+td {
+  padding: 7px 9px;
+  border-bottom: 1px solid #e8e4dd;
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: #faf8f5;
+}
+
+blockquote {
+  border-left: 3px solid #c9a84c;
+  margin: 1em 0;
+  padding: 0.2em 0 0.2em 1em;
+  color: #6b6b6b;
+  font-style: italic;
+}
+
+/* Cover block — anything before the first h2 */
+h1 + p,
+h1 + p + p {
+  font-size: 11pt;
+  color: #6b6b6b;
+}
+
+/* Tighten the cover meta block (consecutive bold-led paragraphs at the top) */
+.cover-meta {
+  margin: 1.2em 0 2em;
+  padding: 1.1em 1.3em;
+  border-left: 4px solid #c8321a;
+  background: #faf8f5;
+}
+
+.cover-meta p {
+  margin: 0.15em 0;
+  font-size: 10.5pt;
+}
