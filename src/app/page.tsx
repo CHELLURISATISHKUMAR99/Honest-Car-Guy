@@ -8,11 +8,11 @@ import { dealers } from '@/lib/data/dealers';
 
 const FINDER_STEPS = [
   { n: 1, label: 'Budget', text: 'Tell us your out-the-door comfort zone.' },
-  { n: 2, label: 'Body style', text: 'Sedan, SUV, truck, minivan, or open.' },
-  { n: 3, label: 'Fuel', text: 'Gas, hybrid, EV, or no preference.' },
-  { n: 4, label: 'Seats', text: 'How many people you regularly carry.' },
-  { n: 5, label: 'Primary use', text: 'Commute, family, work, or adventure.' },
-  { n: 6, label: 'Priorities', text: 'Pick up to three things that matter most.' },
+  { n: 2, label: 'Primary use', text: 'Commute, family, work, or adventure.' },
+  { n: 3, label: 'Seats', text: 'How many people you regularly carry.' },
+  { n: 4, label: 'Priorities', text: 'Pick your top three things that matter most.' },
+  { n: 5, label: 'Body style', text: 'Sedan, SUV, truck, minivan, or open.' },
+  { n: 6, label: 'Fuel', text: 'Gas, hybrid, EV, or no preference.' },
   { n: 7, label: 'ZIP', text: 'So we can match nearby trusted dealers.' },
 ];
 

@@ -21,11 +21,11 @@ import { cn } from '@/lib/utils/cn';
 
 const STEPS = [
   'Budget',
+  'Primary use',
+  'Seats',
+  'Priorities',
   'Body style',
   'Fuel',
-  'Seats',
-  'Primary use',
-  'Priorities',
   'ZIP code',
 ] as const;
 
@@ -88,8 +88,9 @@ export function FinderFlow() {
 
   const zipValid = /^\d{5}$/.test(answers.zip);
   const canNext = useMemo(() => {
-    if (step === 5) return answers.priorities.length >= 1 && answers.priorities.length <= 3;
-    if (step === 6) return zipValid;
+    const name = STEPS[step];
+    if (name === 'Priorities') return answers.priorities.length >= 1 && answers.priorities.length <= 3;
+    if (name === 'ZIP code') return zipValid;
     return true;
   }, [step, answers.priorities.length, zipValid]);
 
@@ -167,7 +168,7 @@ export function FinderFlow() {
       </div>
 
       <div className="card">
-        {step === 0 && (
+        {STEPS[step] === 'Budget' && (
           <Step title="What’s your top-end budget?" subtitle="Out-the-door price you’d be comfortable with.">
             <Choices
               options={BUDGETS.map((b) => ({ value: b, label: `Up to $${b.toLocaleString()}` }))}
@@ -177,38 +178,8 @@ export function FinderFlow() {
           </Step>
         )}
 
-        {step === 1 && (
-          <Step title="Which body style fits your life?">
-            <Choices
-              options={BODY_OPTIONS}
-              value={answers.bodyStyle}
-              onChange={(v) => update('bodyStyle', v)}
-            />
-          </Step>
-        )}
-
-        {step === 2 && (
-          <Step title="What kind of fuel?">
-            <Choices
-              options={FUEL_OPTIONS}
-              value={answers.fuel}
-              onChange={(v) => update('fuel', v)}
-            />
-          </Step>
-        )}
-
-        {step === 3 && (
-          <Step title="How many seats do you need?">
-            <Choices
-              options={SEATS.map((s) => ({ value: s, label: `${s} seats` }))}
-              value={answers.seats}
-              onChange={(v) => update('seats', v)}
-            />
-          </Step>
-        )}
-
-        {step === 4 && (
-          <Step title="How will you mostly use it?">
+        {STEPS[step] === 'Primary use' && (
+          <Step title="How will you mostly use the vehicle?">
             <div className="grid gap-3 sm:grid-cols-2">
               {USE_OPTIONS.map((opt) => (
                 <button
@@ -230,9 +201,19 @@ export function FinderFlow() {
           </Step>
         )}
 
-        {step === 5 && (
+        {STEPS[step] === 'Seats' && (
+          <Step title="How many seats do you need?">
+            <Choices
+              options={SEATS.map((s) => ({ value: s, label: `${s} seats` }))}
+              value={answers.seats}
+              onChange={(v) => update('seats', v)}
+            />
+          </Step>
+        )}
+
+        {STEPS[step] === 'Priorities' && (
           <Step
-            title="Pick up to 3 priorities"
+            title="Pick your top 3 priorities"
             subtitle={`Selected ${answers.priorities.length}/3`}
           >
             <div className="flex flex-wrap gap-2">
@@ -258,7 +239,27 @@ export function FinderFlow() {
           </Step>
         )}
 
-        {step === 6 && (
+        {STEPS[step] === 'Body style' && (
+          <Step title="Which body style fits your life?">
+            <Choices
+              options={BODY_OPTIONS}
+              value={answers.bodyStyle}
+              onChange={(v) => update('bodyStyle', v)}
+            />
+          </Step>
+        )}
+
+        {STEPS[step] === 'Fuel' && (
+          <Step title="What kind of fuel?">
+            <Choices
+              options={FUEL_OPTIONS}
+              value={answers.fuel}
+              onChange={(v) => update('fuel', v)}
+            />
+          </Step>
+        )}
+
+        {STEPS[step] === 'ZIP code' && (
           <Step title="What’s your ZIP code?" subtitle="So we can show nearby dealers with your matches.">
             <input
               type="text"
