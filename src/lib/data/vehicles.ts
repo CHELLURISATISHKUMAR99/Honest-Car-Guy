@@ -15,7 +15,6 @@ export const vehicles: Vehicle[] = [
     strengths: ['reliability', 'fuel-economy', 'value', 'safety'],
     blurb:
       'Hybrid is now standard. Class-leading fuel economy and Toyota’s dependability track record make this the safe default for commuters.',
-    inventoryAvailable: 18,
   },
   {
     id: 'veh-002',
@@ -31,7 +30,6 @@ export const vehicles: Vehicle[] = [
     strengths: ['reliability', 'safety', 'comfort', 'cargo'],
     blurb:
       'The benchmark compact SUV. Roomy back seat, real cargo, and Honda Sensing on every trim.',
-    inventoryAvailable: 24,
   },
   {
     id: 'veh-003',
@@ -47,7 +45,6 @@ export const vehicles: Vehicle[] = [
     strengths: ['comfort', 'safety', 'tech', 'cargo'],
     blurb:
       'Three rows that adults can actually use. Long warranty, premium-feel cabin, and consistent top safety scores.',
-    inventoryAvailable: 11,
   },
   {
     id: 'veh-004',
@@ -63,7 +60,6 @@ export const vehicles: Vehicle[] = [
     strengths: ['performance', 'cargo', 'tech'],
     blurb:
       'The default full-size truck. Strong resale, broad service network, and a 2.7L V6 that handles real work without the diesel premium.',
-    inventoryAvailable: 32,
   },
   {
     id: 'veh-005',
@@ -79,7 +75,6 @@ export const vehicles: Vehicle[] = [
     strengths: ['tech', 'performance', 'fuel-economy'],
     blurb:
       'Best-in-class charging network and software. The most realistic EV for shoppers who road-trip.',
-    inventoryAvailable: 9,
   },
   {
     id: 'veh-006',
@@ -95,7 +90,6 @@ export const vehicles: Vehicle[] = [
     strengths: ['reliability', 'fuel-economy', 'comfort', 'cargo', 'safety'],
     blurb:
       'A hybrid minivan that pulls 36 mpg combined with eight seats and AWD optional. The hidden value buy for big families.',
-    inventoryAvailable: 6,
   },
   {
     id: 'veh-007',
@@ -111,7 +105,6 @@ export const vehicles: Vehicle[] = [
     strengths: ['comfort', 'performance', 'safety'],
     blurb:
       'The driver’s small SUV. Standard AWD, premium-feeling interior, and a chassis that doesn’t feel like an appliance.',
-    inventoryAvailable: 14,
   },
   {
     id: 'veh-008',
@@ -127,6 +120,5 @@ export const vehicles: Vehicle[] = [
     strengths: ['safety', 'reliability', 'cargo'],
     blurb:
       'Standard AWD, a flat cargo floor, and one of the best safety records in its class. Perfect for adventure-leaning buyers.',
-    inventoryAvailable: 21,
   },
 ];

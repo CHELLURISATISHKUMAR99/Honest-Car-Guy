@@ -13,6 +13,7 @@ export const dealers: Dealer[] = [
       'Family-owned for 28 years. Posts out-the-door pricing on every unit and publishes service-history reports up front.',
     phone: '512-555-0142',
     website: 'https://northgatemotors.example',
+    inventoryUrl: 'https://northgatemotors.example/inventory',
     yearsInBusiness: 28,
   },
   {
@@ -27,6 +28,7 @@ export const dealers: Dealer[] = [
       'EV-only lot with on-site Level 2 and DC fast charging. Every vehicle ships with a fresh battery health report.',
     phone: '503-555-0188',
     website: 'https://cascadeev.example',
+    inventoryUrl: 'https://cascadeev.example/inventory',
     yearsInBusiness: 6,
   },
   {
@@ -41,6 +43,7 @@ export const dealers: Dealer[] = [
       'Fixed-price model. No add-ons, no document fee surprises — the number on the window is the number on the contract.',
     phone: '704-555-0119',
     website: 'https://libertyauto.example',
+    inventoryUrl: 'https://libertyauto.example/inventory',
     yearsInBusiness: 14,
   },
   {
@@ -55,6 +58,7 @@ export const dealers: Dealer[] = [
       'Specializes in family haulers under $35k. Every vehicle gets a third-party inspection before it hits the lot.',
     phone: '720-555-0167',
     website: 'https://sierrafamily.example',
+    inventoryUrl: 'https://sierrafamily.example/inventory',
     yearsInBusiness: 11,
   },
   {
@@ -69,6 +73,7 @@ export const dealers: Dealer[] = [
       'European specialists. Full pre-purchase inspections welcomed and CarFax included on every listing.',
     phone: '619-555-0103',
     website: 'https://harborcoast.example',
+    inventoryUrl: 'https://harborcoast.example/inventory',
     yearsInBusiness: 19,
   },
   {

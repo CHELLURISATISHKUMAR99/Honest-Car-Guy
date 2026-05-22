@@ -26,6 +26,7 @@ export type Dealer = {
   blurb: string;
   phone?: string;
   website?: string;
+  inventoryUrl?: string;
   yearsInBusiness?: number;
 };
 
@@ -65,7 +66,6 @@ export type Vehicle = {
   mpgCombined?: number;
   strengths: Priority[];
   blurb: string;
-  inventoryAvailable?: number;
 };
 
 export type FinderAnswers = {

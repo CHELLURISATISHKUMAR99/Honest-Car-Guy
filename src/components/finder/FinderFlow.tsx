@@ -403,12 +403,6 @@ function Results({
                   From ${r.vehicle.msrpFrom.toLocaleString()}
                 </span>
               </div>
-              {typeof r.vehicle.inventoryAvailable === 'number' && (
-                <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-gold/15 px-3 py-1 text-xs font-semibold text-black">
-                  <span className="h-2 w-2 rounded-full bg-gold" />
-                  {r.vehicle.inventoryAvailable} available in our dealer network
-                </div>
-              )}
               <p className="mt-3 text-sm text-black/80">{r.vehicle.blurb}</p>
               {r.reasons.length > 0 && (
                 <ul className="mt-4 space-y-1.5 border-l-2 border-gold pl-4 text-sm text-gray">
@@ -416,6 +410,29 @@ function Results({
                     <li key={idx}>{reason}</li>
                   ))}
                 </ul>
+              )}
+              {dealerMatches.some((m) => m.dealer.inventoryUrl) && (
+                <div className="mt-5 border-t border-black/10 pt-4">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-gray">
+                    Check live inventory
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {dealerMatches
+                      .filter((m) => m.dealer.inventoryUrl)
+                      .slice(0, 3)
+                      .map((m) => (
+                        <a
+                          key={m.dealer.id}
+                          href={m.dealer.inventoryUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-full border border-black/15 px-3 py-1.5 text-xs font-semibold text-black transition-colors hover:border-red hover:text-red"
+                        >
+                          {m.dealer.name} →
+                        </a>
+                      ))}
+                  </div>
+                </div>
               )}
             </div>
           </li>
@@ -473,20 +490,30 @@ function Results({
                 )}
 
                 <div className="mt-5 flex flex-wrap items-center gap-3">
+                  {m.dealer.inventoryUrl && (
+                    <a
+                      href={m.dealer.inventoryUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn btn-primary text-xs"
+                    >
+                      View inventory
+                    </a>
+                  )}
                   <a
                     href={directionsUrl(m.dealer)}
                     target="_blank"
                     rel="noreferrer"
-                    className="btn btn-primary text-xs"
+                    className="btn btn-ghost text-xs"
                   >
                     Get directions
                   </a>
                   {m.dealer.phone && (
                     <a
                       href={`tel:${m.dealer.phone.replace(/\D/g, '')}`}
-                      className="btn btn-ghost text-xs"
+                      className="text-xs font-semibold text-black hover:text-red"
                     >
-                      Call {m.dealer.phone}
+                      {m.dealer.phone}
                     </a>
                   )}
                   {m.dealer.website && (

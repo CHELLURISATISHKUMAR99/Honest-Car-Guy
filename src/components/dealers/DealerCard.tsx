@@ -46,19 +46,31 @@ export function DealerCard({ dealer }: Props) {
         ))}
       </div>
 
-      {(dealer.phone || dealer.website) && (
-        <div className="mt-6 flex items-center justify-between border-t border-black/10 pt-4 text-xs text-gray">
-          {dealer.phone && <span>{dealer.phone}</span>}
-          {dealer.website && (
+      {(dealer.phone || dealer.website || dealer.inventoryUrl) && (
+        <div className="mt-6 border-t border-black/10 pt-4">
+          {dealer.inventoryUrl && (
             <a
-              href={dealer.website}
+              href={dealer.inventoryUrl}
               target="_blank"
               rel="noreferrer"
-              className="font-semibold text-red hover:underline"
+              className="btn btn-primary mb-3 w-full text-xs"
             >
-              Visit site →
+              View their inventory
             </a>
           )}
+          <div className="flex items-center justify-between text-xs text-gray">
+            {dealer.phone && <span>{dealer.phone}</span>}
+            {dealer.website && (
+              <a
+                href={dealer.website}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold text-red hover:underline"
+              >
+                Visit site →
+              </a>
+            )}
+          </div>
         </div>
       )}
     </article>
