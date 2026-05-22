@@ -6,7 +6,7 @@ import { episodes } from '@/lib/data/episodes';
 export const metadata: Metadata = {
   title: 'Podcast',
   description:
-    'Every episode of Info For You Auto — independent car-buying advice, dealership tactics decoded, and listener questions answered.',
+    'Every episode of AutoInfo4U — independent car-buying advice, dealership tactics decoded, and listener questions answered.',
 };
 
 export default function PodcastPage() {

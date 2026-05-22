@@ -6,7 +6,7 @@ import { DealerApplyFlow } from '@/components/dealers/DealerApplyFlow';
 export const metadata: Metadata = {
   title: 'Apply to join the directory',
   description:
-    'Apply to be listed in the Info For You Auto dealer directory. Every application is reviewed personally.',
+    'Apply to be listed in the AutoInfo4U dealer directory. Every application is reviewed personally.',
 };
 
 const TIERS = ['listed', 'certified', 'premier'] as const;

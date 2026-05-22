@@ -6,9 +6,9 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-[5%] py-16">
         <div className="grid gap-12 md:grid-cols-4">
           <div>
-            <div className="flex items-baseline gap-2">
-              <span className="headline text-2xl">Info For You</span>
-              <span className="serif text-lg text-gold">Auto</span>
+            <div className="flex items-baseline gap-1">
+              <span className="headline text-2xl">AutoInfo</span>
+              <span className="headline text-2xl text-gold">4U</span>
             </div>
             <p className="mt-4 max-w-xs text-sm text-cream/70">
               Independent car-buying podcast and shopper tools. Built for buyers, not dealerships.
@@ -43,7 +43,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-cream/10 pt-6 text-xs text-cream/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Info For You Auto. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} AutoInfo4U. All rights reserved.</p>
           <p className="serif italic">Editorial decisions are independent of sponsor and dealer relationships.</p>
         </div>
       </div>

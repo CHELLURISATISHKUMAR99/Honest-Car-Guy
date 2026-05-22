@@ -11,9 +11,9 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-40 border-b border-black/10 bg-cream/90 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-[5%] py-4">
-        <Link href="/" className="flex items-baseline gap-2">
-          <span className="headline text-2xl text-black">Info For You</span>
-          <span className="serif text-lg text-red">Auto</span>
+        <Link href="/" className="flex items-baseline gap-1">
+          <span className="headline text-2xl text-black">AutoInfo</span>
+          <span className="headline text-2xl text-red">4U</span>
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((link) => (

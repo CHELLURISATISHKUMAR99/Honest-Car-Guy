@@ -5,7 +5,7 @@ import { SectionHeader } from '@/components/shared/SectionHeader';
 export const metadata: Metadata = {
   title: 'Transparency pledge',
   description:
-    'The six commitments every Info For You Auto certified and premier dealer signs. Read it before you walk into one of our partner lots.',
+    'The six commitments every AutoInfo4U certified and premier dealer signs. Read it before you walk into one of our partner lots.',
 };
 
 const COMMITMENTS = [

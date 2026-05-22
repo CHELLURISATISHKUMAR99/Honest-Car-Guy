@@ -27,8 +27,8 @@ const fb = Bebas_Neue({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Info For You Auto — Honest car-buying advice',
-    template: '%s · Info For You Auto',
+    default: 'AutoInfo4U — Honest car-buying advice',
+    template: '%s · AutoInfo4U',
   },
   description:
     'Independent car-buying podcast, 7-step Car Finder, and a directory of vetted dealers. Built for shoppers, not dealerships.',
