@@ -6,7 +6,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-[5%] py-16">
         <div className="grid gap-12 md:grid-cols-4">
           <div>
-            <div className="flex items-baseline gap-1">
+            <div className="flex items-baseline">
               <span className="headline text-2xl">AutoInfo</span>
               <span className="headline text-2xl text-gold">4U</span>
             </div>
