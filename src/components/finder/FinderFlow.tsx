@@ -169,7 +169,7 @@ export function FinderFlow() {
 
       <div className="card">
         {STEPS[step] === 'Budget' && (
-          <Step title="What’s your top-end budget?" subtitle="Out-the-door price you’d be comfortable with.">
+          <Step title="What’s your budget?" subtitle="Out-the-door price you’d be comfortable with.">
             <Choices
               options={BUDGETS.map((b) => ({ value: b, label: `Up to $${b.toLocaleString()}` }))}
               value={answers.budgetMax}
