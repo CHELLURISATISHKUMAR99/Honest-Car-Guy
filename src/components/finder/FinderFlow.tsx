@@ -29,7 +29,7 @@ const STEPS = [
   'ZIP code',
 ] as const;
 
-const BUDGETS: number[] = [20000, 30000, 40000, 55000, 80000];
+const BUDGETS: number[] = [20000, 30000, 40000, 55000, 1_000_000];
 
 const BODY_OPTIONS: { value: BodyStyle | 'any'; label: string }[] = [
   { value: 'any', label: 'Open to anything' },
@@ -169,9 +169,12 @@ export function FinderFlow() {
 
       <div className="card">
         {STEPS[step] === 'Budget' && (
-          <Step title="What’s your budget?" subtitle="Out-the-door price you’d be comfortable with.">
+          <Step title="What is your budget?">
             <Choices
-              options={BUDGETS.map((b) => ({ value: b, label: `Up to $${b.toLocaleString()}` }))}
+              options={BUDGETS.map((b) => ({
+                value: b,
+                label: b >= 1_000_000 ? 'Over $55,000' : `Up to $${b.toLocaleString()}`,
+              }))}
               value={answers.budgetMax}
               onChange={(v) => update('budgetMax', v)}
             />
@@ -400,7 +403,13 @@ function Results({
                   From ${r.vehicle.msrpFrom.toLocaleString()}
                 </span>
               </div>
-              <p className="mt-2 text-sm text-black/80">{r.vehicle.blurb}</p>
+              {typeof r.vehicle.inventoryAvailable === 'number' && (
+                <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-gold/15 px-3 py-1 text-xs font-semibold text-black">
+                  <span className="h-2 w-2 rounded-full bg-gold" />
+                  {r.vehicle.inventoryAvailable} available in our dealer network
+                </div>
+              )}
+              <p className="mt-3 text-sm text-black/80">{r.vehicle.blurb}</p>
               {r.reasons.length > 0 && (
                 <ul className="mt-4 space-y-1.5 border-l-2 border-gold pl-4 text-sm text-gray">
                   {r.reasons.map((reason, idx) => (

@@ -65,6 +65,7 @@ export type Vehicle = {
   mpgCombined?: number;
   strengths: Priority[];
   blurb: string;
+  inventoryAvailable?: number;
 };
 
 export type FinderAnswers = {
