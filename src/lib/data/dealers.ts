@@ -14,6 +14,7 @@ export const dealers: Dealer[] = [
     phone: '512-555-0142',
     website: 'https://northgatemotors.example',
     inventoryUrl: 'https://northgatemotors.example/inventory',
+    inventoryUrlPattern: 'https://northgatemotors.example/inventory?make={make}&model={model}',
     yearsInBusiness: 28,
   },
   {
@@ -29,6 +30,7 @@ export const dealers: Dealer[] = [
     phone: '503-555-0188',
     website: 'https://cascadeev.example',
     inventoryUrl: 'https://cascadeev.example/inventory',
+    inventoryUrlPattern: 'https://cascadeev.example/inventory/{make}-{model}',
     yearsInBusiness: 6,
   },
   {
@@ -44,6 +46,7 @@ export const dealers: Dealer[] = [
     phone: '704-555-0119',
     website: 'https://libertyauto.example',
     inventoryUrl: 'https://libertyauto.example/inventory',
+    inventoryUrlPattern: 'https://libertyauto.example/inventory?Make={make}&Model={model}',
     yearsInBusiness: 14,
   },
   {
@@ -59,6 +62,7 @@ export const dealers: Dealer[] = [
     phone: '720-555-0167',
     website: 'https://sierrafamily.example',
     inventoryUrl: 'https://sierrafamily.example/inventory',
+    inventoryUrlPattern: 'https://sierrafamily.example/inventory?make={make}&model={model}&year={year}',
     yearsInBusiness: 11,
   },
   {
@@ -74,6 +78,7 @@ export const dealers: Dealer[] = [
     phone: '619-555-0103',
     website: 'https://harborcoast.example',
     inventoryUrl: 'https://harborcoast.example/inventory',
+    inventoryUrlPattern: 'https://harborcoast.example/used-vehicles/search?make={make}&model={model}',
     yearsInBusiness: 19,
   },
   {

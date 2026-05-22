@@ -15,6 +15,7 @@ import { scoreVehicles } from '@/lib/utils/scoring';
 import {
   directionsUrl,
   findDealersForUser,
+  inventoryUrlForVehicle,
   type DealerMatch,
 } from '@/lib/utils/dealer-match';
 import { cn } from '@/lib/utils/cn';
@@ -411,24 +412,30 @@ function Results({
                   ))}
                 </ul>
               )}
-              {dealerMatches.some((m) => m.dealer.inventoryUrl) && (
+              {dealerMatches.some(
+                (m) => inventoryUrlForVehicle(m.dealer, r.vehicle),
+              ) && (
                 <div className="mt-5 border-t border-black/10 pt-4">
                   <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-gray">
-                    Check live inventory
+                    See {r.vehicle.make} {r.vehicle.model}s in stock at
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {dealerMatches
-                      .filter((m) => m.dealer.inventoryUrl)
+                      .map((m) => ({
+                        dealer: m.dealer,
+                        url: inventoryUrlForVehicle(m.dealer, r.vehicle),
+                      }))
+                      .filter((x) => x.url)
                       .slice(0, 3)
-                      .map((m) => (
+                      .map((x) => (
                         <a
-                          key={m.dealer.id}
-                          href={m.dealer.inventoryUrl}
+                          key={x.dealer.id}
+                          href={x.url}
                           target="_blank"
                           rel="noreferrer"
                           className="inline-flex items-center gap-1.5 rounded-full border border-black/15 px-3 py-1.5 text-xs font-semibold text-black transition-colors hover:border-red hover:text-red"
                         >
-                          {m.dealer.name} →
+                          {x.dealer.name} →
                         </a>
                       ))}
                   </div>

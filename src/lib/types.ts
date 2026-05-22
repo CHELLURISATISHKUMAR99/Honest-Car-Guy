@@ -27,6 +27,7 @@ export type Dealer = {
   phone?: string;
   website?: string;
   inventoryUrl?: string;
+  inventoryUrlPattern?: string;
   yearsInBusiness?: number;
 };
 

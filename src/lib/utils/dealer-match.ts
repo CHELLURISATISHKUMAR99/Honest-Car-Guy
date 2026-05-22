@@ -1,4 +1,4 @@
-import type { Dealer, FinderAnswers } from '@/lib/types';
+import type { Dealer, FinderAnswers, Vehicle } from '@/lib/types';
 
 const STATE_TO_ZIP_PREFIX: Record<string, number> = {
   CT: 0, MA: 0, ME: 0, NH: 0, NJ: 0, RI: 0, VT: 0,
@@ -108,4 +108,18 @@ export function directionsUrl(dealer: Dealer): string {
     `${dealer.name}, ${dealer.city}, ${dealer.state}`,
   );
   return `https://www.google.com/maps/dir/?api=1&destination=${destination}`;
+}
+
+export function inventoryUrlForVehicle(
+  dealer: Dealer,
+  vehicle?: Vehicle,
+): string | undefined {
+  if (vehicle && dealer.inventoryUrlPattern) {
+    return dealer.inventoryUrlPattern
+      .replace(/\{make\}/g, encodeURIComponent(vehicle.make))
+      .replace(/\{model\}/g, encodeURIComponent(vehicle.model))
+      .replace(/\{year\}/g, String(vehicle.year))
+      .replace(/\{bodyStyle\}/g, vehicle.bodyStyle);
+  }
+  return dealer.inventoryUrl;
 }
